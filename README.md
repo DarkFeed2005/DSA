@@ -12,6 +12,7 @@ A collection of data structure and algorithm implementations written in Java for
 - [Submission 1 - Stacks & Queues](#submission-1---stacks--queues)
 - [Submission 2 - Queues & Linked Lists](#submission-2---queues--linked-lists)
 - [Submission 3 - Circular Lists, Linked Stack & Queue, Rabbit Problem](#submission-3---circular-lists-linked-stack--queue-rabbit-problem)
+- [Submission 4 - Hanoi Tower & Basic Sorting](#submission-4---hanoi-tower--basic-sorting)
 - [Complexity Summary](#complexity-summary)
 - [Roadmap](#roadmap)
 - [Project Structure](#project-structure)
@@ -125,6 +126,35 @@ Start with one newborn pair; every pair breeds once it is a month old and then p
 
 ---
 
+## Submission 4 - Hanoi Tower & Basic Sorting
+
+Folder: [`Submission 04`](Submission%2004)
+
+| File | Type | Notes |
+|------|------|-------|
+| [`HanoiTower.java`](Submission%2004/HanoiTower.java) | Recursion | Prints every move, minimum moves = 2^n - 1 |
+| [`BubbleSort.java`](Submission%2004/BubbleSort.java) | Sorting | Always runs every pass |
+| [`OptimizedBubbleSort.java`](Submission%2004/OptimizedBubbleSort.java) | Sorting | Early exit and shrinking range |
+| [`InsertionSort.java`](Submission%2004/InsertionSort.java) | Sorting | Shifts larger items to insert each key |
+
+### How each one works
+
+**Hanoi Tower**
+To move `n` disks from peg A to peg C: move the top `n-1` disks to the helper peg B, move the largest disk to C, then move the `n-1` disks from B to C. The program prints each move and a table showing that the move count always equals 2^n - 1.
+
+**Bubble Sort**
+Compares neighbouring items and swaps them when they are out of order, so the largest remaining item bubbles to the end on every pass. This version always performs all passes, even on a sorted array.
+
+**Optimized Bubble Sort**
+Adds two improvements: it stops as soon as a pass makes no swaps, and it only scans up to the position of the last swap, since everything after that is already in place. On a sorted array it needs just `n-1` comparisons.
+
+**Insertion Sort**
+Grows a sorted section at the front of the array. Each new item (the key) is inserted by shifting larger items one place to the right, like sorting playing cards in your hand. It is fast on nearly sorted data.
+
+Each sorting file also counts comparisons and swaps (or shifts), and its demo shows the difference on sorted and nearly sorted input.
+
+---
+
 ## Complexity Summary
 
 | Structure | Push / Enqueue | Pop / Dequeue | Peek / Top | Space |
@@ -151,6 +181,15 @@ Start with one newborn pair; every pair breeds once it is a month old and then p
 
 CircularDoublyLinkedList has the same complexities as DoublyLinkedList, plus `rotate(k)` in O(k mod n).
 
+### Sorting algorithms
+| Algorithm | Best | Average | Worst | Space | Stable |
+|-----------|:----:|:-------:|:-----:|:-----:|:------:|
+| Bubble Sort | O(n^2) | O(n^2) | O(n^2) | O(1) | Yes |
+| Optimized Bubble Sort | O(n) | O(n^2) | O(n^2) | O(1) | Yes |
+| Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1) | Yes |
+
+Tower of Hanoi takes O(2^n) time and O(n) recursion depth.
+
 ### Rabbit Problem
 
 | Method | Time | Space |
@@ -168,7 +207,7 @@ Progress through the CA3 submissions:
 - [x] **Submission 1** - QueueStack (push/pop friendly), Unbounded Array Stack, StackQueue (enqueue friendly)
 - [x] **Submission 2** - StackQueue (dequeue friendly), ArrayCircularQueue, SinglyLinkedList, DoublyLinkedList
 - [x] **Submission 3** - CircularDoublyLinkedList, LinkedListStack, LinkedListFIFOQueue, Rabbit Problem
-- [ ] **Submission 4** - Hanoi Tower, Bubble Sort, Optimized Bubble Sort, Insertion Sort
+- [x] **Submission 4** - Hanoi Tower, Bubble Sort, Optimized Bubble Sort, Insertion Sort
 - [ ] **Submission 5** - Optimized Insertion Sort, Selection Sort, Merge Sort, Quick Sort
 - [ ] **Submission 6** - Optimized Quick Sort, Binary Search Tree, AVL Tree
 
@@ -193,6 +232,11 @@ DSA/
 │   ├── LinkedListStack.java
 │   ├── LinkedListFIFOQueue.java
 │   └── RabbitProblem.java
+├── Submission 04/
+│   ├── HanoiTower.java
+│   ├── BubbleSort.java
+│   ├── OptimizedBubbleSort.java
+│   └── InsertionSort.java
 ├── .gitignore
 ├── LICENSE
 └── README.md
