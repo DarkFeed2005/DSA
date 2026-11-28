@@ -13,6 +13,7 @@ A collection of data structure and algorithm implementations written in Java for
 - [Submission 2 - Queues & Linked Lists](#submission-2---queues--linked-lists)
 - [Submission 3 - Circular Lists, Linked Stack & Queue, Rabbit Problem](#submission-3---circular-lists-linked-stack--queue-rabbit-problem)
 - [Submission 4 - Hanoi Tower & Basic Sorting](#submission-4---hanoi-tower--basic-sorting)
+- [Submission 5 - Optimized Insertion, Selection, Merge & Quick Sort](#submission-5---optimized-insertion-selection-merge--quick-sort)
 - [Complexity Summary](#complexity-summary)
 - [Roadmap](#roadmap)
 - [Project Structure](#project-structure)
@@ -155,6 +156,35 @@ Each sorting file also counts comparisons and swaps (or shifts), and its demo sh
 
 ---
 
+## Submission 5 - Optimized Insertion, Selection, Merge & Quick Sort
+
+Folder: [`Submission 05`](Submission%2005)
+
+| File | Type | Notes |
+|------|------|-------|
+| [`OptimizedInsertionSort.java`](Submission%2005/OptimizedInsertionSort.java) | Sorting | Binary search for the insertion position |
+| [`SelectionSort.java`](Submission%2005/SelectionSort.java) | Sorting | At most n-1 swaps |
+| [`MergeSort.java`](Submission%2005/MergeSort.java) | Sorting | Divide and conquer, always O(n log n) |
+| [`QuickSort.java`](Submission%2005/QuickSort.java) | Sorting | Lomuto partition, last element as pivot |
+
+### How each one works
+
+**Optimized Insertion Sort**
+Improves insertion sort in two ways. If the next item is not smaller than the last sorted item it is already in place and is skipped, keeping the best case at O(n). Otherwise binary search finds the insertion position in O(log i) comparisons instead of scanning item by item. The shifts still take O(n^2) in the worst case, and ties go to the right of equal items so the sort stays stable.
+
+**Selection Sort**
+On each pass it finds the smallest item in the unsorted part and swaps it to the front. It always makes n(n-1)/2 comparisons, but only n-1 swaps at most, which helps when writing to memory is expensive.
+
+**Merge Sort**
+Splits the array into halves, sorts each half recursively, then merges the two sorted halves using a helper array. The split is always even, so it runs in O(n log n) no matter how the input is ordered, and ties take the left item so it is stable.
+
+**Quick Sort**
+Picks the last item as the pivot and partitions the array so smaller or equal items sit on its left and larger items on its right. The pivot is then in its final position, and both sides are sorted recursively. On an already sorted array this pivot choice gives the O(n^2) worst case, which the demo shows.
+
+All four files verify their result against `Arrays.sort` on random data and print comparison counts.
+
+---
+
 ## Complexity Summary
 
 | Structure | Push / Enqueue | Pop / Dequeue | Peek / Top | Space |
@@ -187,6 +217,10 @@ CircularDoublyLinkedList has the same complexities as DoublyLinkedList, plus `ro
 | Bubble Sort | O(n^2) | O(n^2) | O(n^2) | O(1) | Yes |
 | Optimized Bubble Sort | O(n) | O(n^2) | O(n^2) | O(1) | Yes |
 | Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1) | Yes |
+| Optimized Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1) | Yes |
+| Selection Sort | O(n^2) | O(n^2) | O(n^2) | O(1) | No |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes |
+| Quick Sort | O(n log n) | O(n log n) | O(n^2) | O(log n) | No |
 
 Tower of Hanoi takes O(2^n) time and O(n) recursion depth.
 
@@ -208,7 +242,7 @@ Progress through the CA3 submissions:
 - [x] **Submission 2** - StackQueue (dequeue friendly), ArrayCircularQueue, SinglyLinkedList, DoublyLinkedList
 - [x] **Submission 3** - CircularDoublyLinkedList, LinkedListStack, LinkedListFIFOQueue, Rabbit Problem
 - [x] **Submission 4** - Hanoi Tower, Bubble Sort, Optimized Bubble Sort, Insertion Sort
-- [ ] **Submission 5** - Optimized Insertion Sort, Selection Sort, Merge Sort, Quick Sort
+- [x] **Submission 5** - Optimized Insertion Sort, Selection Sort, Merge Sort, Quick Sort
 - [ ] **Submission 6** - Optimized Quick Sort, Binary Search Tree, AVL Tree
 
 ---
@@ -237,6 +271,11 @@ DSA/
 │   ├── BubbleSort.java
 │   ├── OptimizedBubbleSort.java
 │   └── InsertionSort.java
+├── Submission 05/
+│   ├── OptimizedInsertionSort.java
+│   ├── SelectionSort.java
+│   ├── MergeSort.java
+│   └── QuickSort.java
 ├── .gitignore
 ├── LICENSE
 └── README.md
